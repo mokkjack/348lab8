@@ -195,7 +195,7 @@ int main() {
                     cout<<"Which rows do you want to swap? (Starting from row 1 to row "<<n<<")"<<endl; //prompt user
                     int row1, row2; //variables to hold row numbers
                     cin>>row1>>row2; //take in input
-                    swap_rows(matrix2, row1, row2,n); //run function with matrix 1
+                    swap_rows(matrix2, row1-1, row2-1,n); //run function with matrix 1
                 }
                 else{ //edge case checking
                     cout<<"Invalid choice"<<endl; //print error message
