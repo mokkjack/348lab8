@@ -90,19 +90,20 @@ void swap_cols(vector<vector<string>> m1, int col1, int col2,int n){
         std::cout << std::endl; //print a new line
     }
 };
-void matrix_updater(vector<vector<string>> &m1, int row, int col, string value, int n){ //passing by reference so we update the original value
-    vector<vector<string>> result(n, vector<string>(n));
+void matrix_updater(vector<vector<string>> m1, int row, int col, string value, int n){ //passing by reference so we update the original value
+    vector<vector<string>> result(n, vector<string>(n)); //create a result matrix
+    result=m1; //copy the original matrix to the result matrix
     for (int i = 0; i < n; ++i) { //Iterate through
         for (int j = 0; j < n; ++j) { //Iterate through
             if (i == row && j == col){ //if we are at the row and column we want to update
-                m1[i][j] = value; //update the value
+                result[i][j] = value; //update the value
             }
         }
     }
-    cout << "Result from editing ("<<row<<col<<")"<<endl; //print out new matrix
+    cout << "Result from editing ("<<row<<","<<col<<")"<<endl; //print out new matrix
     for (int i = 0; i < n; ++i) { //iterate through rows
         for (int j = 0; j < n; ++j) { //iterate through columns
-            std::cout << m1[i][j] << " "; //print value
+            std::cout << result[i][j] << " "; //print value
         }
         std::cout << std::endl; //print new line
     }
@@ -235,17 +236,23 @@ int main() {
             }
             else if (choice == 6){ //Update matrix value
                 cout<<"Which matrix do you want to update a value in?"<<endl; //prompt user
-                int subchoice,rowchoice,colchoice; //
+                int subchoice,rowchoice,colchoice; //variables to hold matrix, row, and column numbers
                 cin>>subchoice; //take in input
+                if (subchoice >2 || subchoice < 1){ //edge case checking
+                    cout<<"Invalid matrix choice"<<endl; //print error message
+                    return 0; //end program
+                }
                 cout<<"Which row? (Starting from row 1 to row "<<n<<")"<<endl; //prompt user
                 cin>>rowchoice; //take in input
                 if (rowchoice > n || rowchoice < 0){ //edge case checking
                     cout<<"Invalid row number"<<endl; //print error message
+                    return 0; //end program
                 }
                 cout<<"Which column? (Starting from row 1 to row "<<n<<")"<<endl; //prompt user
                 cin>>colchoice; //take in input
                 if (colchoice > n || colchoice < 0){ //edge case checking
                     cout<<"Invalid column number"<<endl; //print error message
+                    return 0;
                 }
                 cout<<"What value do you want to update it to?"<<endl; //prompt user
                 string value; //variable to hold value
