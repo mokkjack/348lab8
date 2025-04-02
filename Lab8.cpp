@@ -26,8 +26,8 @@ void matrix_multiplier(vector<vector<string>> m1, vector<vector<string>> m2,int 
             int sum=0;// create temp sum value
             for(int k=0; k<n; k++){ //Iterate through
                 sum += stoi(m1[i][k]) * stoi(m2[k][j]); //add the two values together to the matrix
-                result[i][j] = to_string(sum); //add the sum to the result
             }
+            result[i][j] = to_string(sum); //add the sum to the result
         }
     }
     cout << "Result of multiplying the matricies:" << endl; //print out new matrix
