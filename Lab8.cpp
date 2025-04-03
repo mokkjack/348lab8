@@ -3,8 +3,8 @@
 #include <string> //used for strings
 #include <vector> //used to hold vectors
 using namespace std;
-void matrix_adder(vector<vector<string>> m1, vector<vector<string>> m2,int n){
-    vector<vector<string>> result(n, vector<string>(n,"0"));
+void matrix_adder(vector<vector<string>> m1, vector<vector<string>> m2,int n){ //matrix adder function
+    vector<vector<string>> result(n, vector<string>(n,"0")); //create a result matrix
     for (int i = 0; i < n; ++i) { //iterate through rows
         for (int j = 0; j < n; ++j) { //Iterate through columns
             int sum = stoi(m1[i][j]) + stoi(m2[i][j]); //add the two values together to the matrix
@@ -39,9 +39,9 @@ void matrix_multiplier(vector<vector<string>> m1, vector<vector<string>> m2,int 
     }
 };
 void diag_sum(vector<vector<string>> m1,int n){
-    vector<vector<string>> result1(n, vector<string>(n));
-    vector<vector<string>> result2(n, vector<string>(n));
-    int sum1=0;
+    vector<vector<string>> result1(n, vector<string>(n)); //create result 1 function
+    vector<vector<string>> result2(n, vector<string>(n)); //create result 2 function
+    int sum1=0; //create sum integers
     int sum2=0;
     for (int i = 0; i < n; ++i){ //iterate through
         for (int j = 0; j < n; ++j) { //iterate through
@@ -49,7 +49,7 @@ void diag_sum(vector<vector<string>> m1,int n){
                 sum1 += stoi(m1[i][j]); //add the value to the result
             }
             if (i == n-j-1){ //if we are on the other diagonal
-                sum2 += stoi(m1[i][j]); //add the value to the result
+                sum2 += stoi(m1[i][j]); //add the value to the second result
             }
         }
     }
@@ -63,7 +63,7 @@ void swap_rows(vector<vector<string>> m1, int row1, int row2,int n){
     else{
         swap(m1[row1], m1[row2]); //swap the rows
     }
-    cout << "Result from swapping row "<<row1<<" with "<<row2<<endl; //print out new matrix
+    cout << "Result from swapping row "<<row1+1<<" with "<<row2+1<<endl; //print out new matrix
     for (int i = 0; i < n; ++i) { //iterate through rows
         for (int j = 0; j < n; ++j) { //iterate through columns
             std::cout << m1[i][j] << " "; //print out the value
@@ -82,7 +82,7 @@ void swap_cols(vector<vector<string>> m1, int col1, int col2,int n){
             m1[i][col2] = temp; //swap the values
         }
     }
-    cout << "Result from swapping column "<<col1<<" with "<<col2<<endl; //print out new matrix
+    cout << "Result from swapping column "<<col1+1<<" with "<<col2+1<<endl; //print out new matrix
     for (int i = 0; i < n; ++i) { //iterate through rows
         for (int j = 0; j < n; ++j) { //iterate through columns
             std::cout << m1[i][j] << " "; //print out the value
@@ -100,7 +100,7 @@ void matrix_updater(vector<vector<string>> m1, int row, int col, string value, i
             }
         }
     }
-    cout << "Result from editing ("<<row<<","<<col<<")"<<endl; //print out new matrix
+    cout << "Result from editing ("<<row+1<<","<<col+1<<")"<<endl; //print out new matrix
     for (int i = 0; i < n; ++i) { //iterate through rows
         for (int j = 0; j < n; ++j) { //iterate through columns
             std::cout << result[i][j] << " "; //print value
@@ -189,13 +189,25 @@ int main() {
                 if (subchoice == 1){ //if matrix 1
                     cout<<"Which rows do you want to swap? (Starting from row 1 to row "<<n<<")"<<endl; //prompt user
                     int row1, row2; //variables to hold row numbers
-                    cin>>row1>>row2; //take in input
+                    cout<<"First Row: "<<endl; //print
+                    cin>>row1; //take in first column
+                    cout<<"\nSecond Row: "<<endl; //print
+                    cin>>row2; //take in column to swap with
+                    if (row1 > n || row2 > n || row1<0 || row2<0){ //edge case checking
+                        cout<<"Invalid column number"<<endl; //print error message
+                    }
                     swap_rows(matrix1, row1-1, row2-1,n); //run function with matrix 1
                 }
                 else if (subchoice == 2){ //if matrix 2
                     cout<<"Which rows do you want to swap? (Starting from row 1 to row "<<n<<")"<<endl; //prompt user
                     int row1, row2; //variables to hold row numbers
-                    cin>>row1>>row2; //take in input
+                    cout<<"First Row: "<<endl; //print
+                    cin>>row1; //take in first column
+                    cout<<"\nSecond Row: "<<endl; //print
+                    cin>>row2; //take in column to swap with
+                    if (row1 > n || row2 > n || row1<0 || row2<0){ //edge case checking
+                        cout<<"Invalid column number"<<endl; //print error message
+                    }
                     swap_rows(matrix2, row1-1, row2-1,n); //run function with matrix 1
                 }
                 else{ //edge case checking
@@ -209,10 +221,10 @@ int main() {
                 if (subchoice == 1){ //if matrix 1
                     cout<<"Which columns do you want to swap?(Starting from column 1 to column "<<n<<")"<<endl; //prompt user
                     int col1, col2; //variables to hold row numbers
-                    cout<<"First Column: "<<endl;
-                    cin>>col1;
-                    cout<<"\nSecond Column: "<<endl;
-                    cin>>col2;
+                    cout<<"First Column: "<<endl; //print
+                    cin>>col1; //take in first column
+                    cout<<"\nSecond Column: "<<endl; //print
+                    cin>>col2; //take in column to swap with
                     if (col1 > n || col2 > n || col1<0 || col2<0){ //edge case checking
                         cout<<"Invalid column number"<<endl; //print error message
                     }
@@ -221,10 +233,10 @@ int main() {
                 else if (subchoice == 2){ //if matrix 2
                     cout<<"Which Columns do you want to swap?"<<endl; //prompt user
                     int col1, col2; //variables to hold row numbers
-                    cout<<"First Column:";
-                    cin>>col1;
-                    cout<<"Second Column:";
-                    cin>>col2;
+                    cout<<"First Column:"; //print
+                    cin>>col1; //take in first column
+                    cout<<"Second Column:"; //print
+                    cin>>col2; //take in column to swap with
                     if (col1 > n || col2 > n || col1<0 || col2<0){ //edge case checking
                         cout<<"Invalid column number"<<endl; //print error message
                     }
